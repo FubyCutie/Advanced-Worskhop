@@ -57,10 +57,10 @@ public class EntityUtils {
         if (currentDuration == null)
             currentDuration = Double.MAX_VALUE;
 
-        if (duration < currentDuration && !wsPlayer.hasStored())
+        if (duration < currentDuration && !wsPlayer.hasStored() && wsPlayer.getCustomRandom() == null)
             DBUtils.saveData(player, wsPlayer.getPlayArea().getType() + "." + "crafts" + "." + wsPlayer.getCurrentCraft().getName(), duration, Float.class);
 
-        String message = (currentDuration != Double.MAX_VALUE && (duration < currentDuration) && !wsPlayer.hasStored() ? "§d§lPB! (" + StringUtils.ROUND.format(duration - currentDuration) + "s" + ")" : "");
+        String message = (currentDuration != Double.MAX_VALUE && (duration < currentDuration) && !wsPlayer.hasStored() && wsPlayer.getCustomRandom() == null ? "§d§lPB! (" + StringUtils.ROUND.format(duration - currentDuration) + "s" + ")" : "");
 
         if (wsPlayer.getGameOptions().isShowNonPBs() && duration >= currentDuration) {
             message = ("§c§l(+" + StringUtils.ROUND.format(duration - currentDuration) + "s)");

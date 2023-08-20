@@ -139,7 +139,13 @@ public class DecoUtils {
                 continue;
             }
             if (wsplayer.isInGame()) {
-                Random rng = new Random();
+                Random rng;
+                if (wsplayer.getCustomRandom() != null) {
+                    rng = wsplayer.getCustomRandom();
+                }
+                else {
+                    rng = new Random();
+                }
                 int randomBlockIndex = rng.nextInt(decoBlock.getNormalBlockNum());
 
                 decoBlock.setIndex(randomBlockIndex);

@@ -195,7 +195,11 @@ public class MapUtils {
         try {
             File logicFile = MapFileUtils.getMapFile(mapName, 'L');
             List<Location> keyList = Arrays.asList(MapFileUtils.getLogicLocationKeys(logicFile, world, 'P'));
-            Collections.shuffle(keyList);
+            if (wsplayer.getCustomRandom() != null) {
+                Collections.shuffle(keyList, wsplayer.getCustomRandom());
+            } else {
+                Collections.shuffle(keyList);
+            }
             Location[] keys = keyList.toArray(new Location[0]);
             ItemStack[][] allNeeded = LogicFileUtils.readFileItem(mapName, keys, "Priority");
 

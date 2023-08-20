@@ -16,6 +16,7 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class WSPlayer {
 
@@ -70,6 +71,8 @@ public class WSPlayer {
     protected MapMetadata mapMeta;
 
     protected GameOptions defaultGameOptions;
+
+    protected Random customRandom;
 
     public WSPlayer(Player player, ClientVersion clientVersion) {
         this.clientVersion = clientVersion;
@@ -242,6 +245,7 @@ public class WSPlayer {
 
     public GameOptions getDefaultGameOptions() { return defaultGameOptions; }
 
+    public void setCustomRandom(Random customRandom) { this.customRandom = customRandom; }
 
-
+    public Random getCustomRandom() { return customRandom; }
 }

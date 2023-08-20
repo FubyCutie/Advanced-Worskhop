@@ -36,7 +36,13 @@ public class CraftUtils {
     }
 
     public static void updateCraftList(WSPlayer wsplayer) {
-        Random rng = new Random();
+        Random rng;
+        if (wsplayer.getCustomRandom() != null) {
+            rng = wsplayer.getCustomRandom();
+        }
+        else {
+            rng = new Random();
+        }
         GameOptions gameoptions = wsplayer.getGameOptions();
 
         List<Craft> finalCraftList =  new ArrayList<>();
@@ -102,7 +108,11 @@ public class CraftUtils {
             bag.addAll(validCrafts);
         }
 
-        Collections.shuffle(bag);
+        if (wsplayer.getCustomRandom() != null) {
+            Collections.shuffle(bag, wsplayer.getCustomRandom());
+        } else {
+            Collections.shuffle(bag);
+        }
         return bag.subList(0, bag.size() - extra);
     }
 

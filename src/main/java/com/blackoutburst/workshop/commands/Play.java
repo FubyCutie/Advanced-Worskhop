@@ -24,6 +24,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public class Play implements CommandExecutor {
 
     private static void setCraftAmount(WSPlayer wsplayer, String value) {
@@ -190,6 +192,17 @@ public class Play implements CommandExecutor {
         if (sender instanceof Player player) {
             WSPlayer wsplayer = WSPlayer.getFromPlayer(player);
             if (wsplayer == null || wsplayer.isInGame()) return true;
+
+            wsplayer.setCustomRandom(null);
+
+            if (args.length >= 1 && args[0].matches("[0-9]+")) {
+                wsplayer.setCustomRandom(new Random((Long.parseLong(args[0]))));
+                String[] newArgs = new String[args.length-1];
+                for (int i = 0; i+1 < args.length; i++) {
+                    newArgs[i] = args[i+1];
+                }
+                args = newArgs;
+            }
 
             if (args.length == 0) {
                 wsplayer.setEditing(false);

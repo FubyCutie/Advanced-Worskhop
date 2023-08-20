@@ -47,7 +47,11 @@ public class RoundLogic {
                 }
             }
             shuffledInv.removeAll(airList);
-            Collections.shuffle(shuffledInv);
+            if (wsplayer.getCustomRandom() != null) {
+                Collections.shuffle(shuffledInv, wsplayer.getCustomRandom());
+            } else {
+                Collections.shuffle(shuffledInv);
+            }
 
             ItemStack[] shuffledInvArray = shuffledInv.toArray(new ItemStack[0]);
             ItemStack[] finalInv = new ItemStack[36];

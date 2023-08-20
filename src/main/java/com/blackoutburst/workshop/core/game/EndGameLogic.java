@@ -62,7 +62,8 @@ public class EndGameLogic {
     private static void checkTimes(WSPlayer wsplayer, boolean endedNaturally, String... timeTypes) {
         GameOptions gameoptions = wsplayer.getGameOptions();
 
-        if (gameoptions.isTimeLimited() && endedNaturally && !gameoptions.hypixelSaysMode) {
+        if (gameoptions.isTimeLimited() && endedNaturally && !gameoptions.hypixelSaysMode
+                && wsplayer.getCustomRandom() == null) {
             if (timeTypes.length > 0) {
                 PBUtils.craftPB(wsplayer, timeTypes[0]);
             }
@@ -71,49 +72,55 @@ public class EndGameLogic {
         wsplayer.getTimers().setMapEnd(Instant.now());
 
         if (wsplayer.getCurrentCraftIndex() == 5 && gameoptions.getRandomType() == 'N'
-                && gameoptions.hypixelSaysMode && endedNaturally) {
+                && gameoptions.hypixelSaysMode && endedNaturally && wsplayer.getCustomRandom() == null) {
             if (PBUtils.hypixelSaysRegularPB(wsplayer)) return;
         }
 
         if (wsplayer.getCurrentCraftIndex() == 5 && gameoptions.getRandomType() == 'N'
-                && !gameoptions.hypixelSaysMode && endedNaturally) {
+                && !gameoptions.hypixelSaysMode && endedNaturally && wsplayer.getCustomRandom() == null) {
             if (PBUtils.regularPB(wsplayer)) return;
         }
 
         if (wsplayer.getCurrentCraftIndex() == 10 && gameoptions.getRandomType() == 'N'
-                && !gameoptions.hypixelSaysMode && endedNaturally) {
+                && !gameoptions.hypixelSaysMode && endedNaturally && wsplayer.getCustomRandom() == null) {
             if (PBUtils.craft10PB(wsplayer)) return;
         }
 
         if (wsplayer.getCurrentCraftIndex() == 15 && gameoptions.getRandomType() == 'N'
-                && !gameoptions.hypixelSaysMode && endedNaturally) {
+                && !gameoptions.hypixelSaysMode && endedNaturally && wsplayer.getCustomRandom() == null) {
             if (PBUtils.craft15PB(wsplayer)) return;
         }
 
         if (wsplayer.getCurrentCraftIndex() == wsplayer.getCrafts().size()
-                && gameoptions.getRandomType() == 'N' && endedNaturally && gameoptions.hypixelSaysMode) {
+                && gameoptions.getRandomType() == 'N' && endedNaturally && gameoptions.hypixelSaysMode
+                && wsplayer.getCustomRandom() == null) {
             if (PBUtils.hypixelSaysAllCraftPB(wsplayer)) return;
         }
 
         if (wsplayer.getCurrentCraftIndex() == wsplayer.getCrafts().size()
-                && gameoptions.getRandomType() == 'N' && endedNaturally && !gameoptions.hypixelSaysMode) {
+                && gameoptions.getRandomType() == 'N' && endedNaturally && !gameoptions.hypixelSaysMode
+                && wsplayer.getCustomRandom() == null) {
             if (PBUtils.allCraftPB(wsplayer)) return;
         }
 
         if (gameoptions.isShowNonPBs() && wsplayer.getCurrentCraftIndex() == wsplayer.getCrafts().size()
-                && gameoptions.getRandomType() == 'N' && endedNaturally && !gameoptions.hypixelSaysMode) {
+                && gameoptions.getRandomType() == 'N' && endedNaturally && !gameoptions.hypixelSaysMode
+                && wsplayer.getCustomRandom() == null) {
             PBUtils.nonPB(wsplayer, 'A');
         }
         if (gameoptions.isShowNonPBs() && wsplayer.getCurrentCraftIndex() == 5
-                && gameoptions.getRandomType() == 'N' && endedNaturally && !gameoptions.hypixelSaysMode) {
+                && gameoptions.getRandomType() == 'N' && endedNaturally && !gameoptions.hypixelSaysMode
+                && wsplayer.getCustomRandom() == null) {
             PBUtils.nonPB(wsplayer, 'R');
         }
         if (gameoptions.isShowNonPBs() && wsplayer.getCurrentCraftIndex() == wsplayer.getCrafts().size()
-                && gameoptions.getRandomType() == 'N' && endedNaturally && gameoptions.hypixelSaysMode) {
+                && gameoptions.getRandomType() == 'N' && endedNaturally && gameoptions.hypixelSaysMode
+                && wsplayer.getCustomRandom() == null) {
             PBUtils.nonPB(wsplayer, 'a');
         }
         if (gameoptions.isShowNonPBs() && wsplayer.getCurrentCraftIndex() == 5
-                && gameoptions.getRandomType() == 'N' && endedNaturally && gameoptions.hypixelSaysMode) {
+                && gameoptions.getRandomType() == 'N' && endedNaturally && gameoptions.hypixelSaysMode
+                && wsplayer.getCustomRandom() == null) {
             PBUtils.nonPB(wsplayer, 'r');
         }
 
